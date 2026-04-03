@@ -46,8 +46,7 @@ const projects = [
     title: "크로스 도메인 콘텐츠 추천 플랫폼",
     period: "2023",
     role: "팀 5명 · 프론트엔드 개발 + 백엔드 연동",
-    brief:
-      "영화·드라마·책·웹툰 추천, RecBole + Sentence-BERT, SSR 웹 서비스",
+    brief: "영화·드라마·책·웹툰 추천, RecBole + Sentence-BERT, SSR 웹 서비스",
     image: "/placeholder.jpg",
   },
 ];
@@ -57,20 +56,27 @@ export default function Home() {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      text:
-        "안녕하세요! 포트폴리오 관련 질문을 해주세요. Spring AI 백엔드와 연결된 챗봇입니다.",
+      text: "안녕하세요! 포트폴리오 관련 질문을 해주세요. Spring AI 백엔드와 연결된 챗봇입니다.",
     },
   ]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
+  const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+
   const chatFetch = async (prompt: string) => {
-    const res = await fetch("/api/v1/rag/query", {
+    const res = await fetch(`${API_BASE_URL}/api/v1/rag/query`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: prompt, model: "gpt-3.5-turbo", maxResults: 3 }),
+      body: JSON.stringify({
+        query: prompt,
+        model: "gpt-3.5-turbo",
+        maxResults: 3,
+      }),
     });
+
     if (!res.ok) {
       throw new Error(`서버 응답 오류: ${res.status}`);
     }
@@ -115,8 +121,15 @@ export default function Home() {
   };
 
   const skillChips = useMemo(
-    () => ["Next.js", "React", "TypeScript", "Spring Boot", "Tailwind CSS", "AI Chat"],
-    []
+    () => [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Spring Boot",
+      "Tailwind CSS",
+      "AI Chat",
+    ],
+    [],
   );
 
   useEffect(() => {
@@ -134,9 +147,12 @@ export default function Home() {
     <div className="min-h-screen bg-zinc-100 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100">
       <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 p-6 md:p-10">
         <section className="rounded-2xl border border-zinc-300 bg-white/80 p-6 shadow-sm backdrop-blur dark:border-zinc-800 dark:bg-zinc-900/70">
-          <h1 className="text-4xl font-bold tracking-tight">남인서 | Inseo Nam</h1>
+          <h1 className="text-4xl font-bold tracking-tight">
+            남인서 | Inseo Nam
+          </h1>
           <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-300">
-            기술로 현실의 문제를 해결하는 풀스택 개발자. 문제 발견부터 요구를 정의하고 실행하는 주도적 개발 경험 보유.
+            기술로 현실의 문제를 해결하는 풀스택 개발자. 문제 발견부터 요구를
+            정의하고 실행하는 주도적 개발 경험 보유.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             {skillChips.map((skill) => (
@@ -157,11 +173,21 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                 우리FISA 금융 클라우드 서비스 개발반 6기
               </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">2025.12 ~ 2026.06 (진행 중)</p>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                2025.12 ~ 2026.06 (진행 중)
+              </p>
               <ul className="mt-2 list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
                 <li>주요 프로젝트: 카드 소비 데이터 분석 서비스</li>
-                <li>구현: Smart Terms UI 컴포넌트 라이브러리, 감사 로그 변조 탐지 Java 라이브러리 (HMAC 해시 체인), 생산자-소비자 패턴 식당 시뮬레이션 (Java 멀티스레딩), Spring OAuth2 인가 서버 + Next.js 클라이언트, MySQL Multi-Source Replication 실습</li>
-                <li>React2Shell(CVE-2025-55182, CVSS 10.0) 보안 세미나 발표 — 우수상</li>
+                <li>
+                  구현: Smart Terms UI 컴포넌트 라이브러리, 감사 로그 변조 탐지
+                  Java 라이브러리 (HMAC 해시 체인), 생산자-소비자 패턴 식당
+                  시뮬레이션 (Java 멀티스레딩), Spring OAuth2 인가 서버 +
+                  Next.js 클라이언트, MySQL Multi-Source Replication 실습
+                </li>
+                <li>
+                  React2Shell(CVE-2025-55182, CVSS 10.0) 보안 세미나 발표 —
+                  우수상
+                </li>
               </ul>
             </div>
 
@@ -172,7 +198,10 @@ export default function Home() {
               <p className="text-sm text-zinc-600 dark:text-zinc-400">2025</p>
               <ul className="mt-2 list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
                 <li>자동화 프로그램·EX-점검로드·청렴탐험대 개발</li>
-                <li>혁신보고서: 데이터 연동 자동화 및 AI 기반 교량 상태 예측 개선 제안</li>
+                <li>
+                  혁신보고서: 데이터 연동 자동화 및 AI 기반 교량 상태 예측 개선
+                  제안
+                </li>
               </ul>
             </div>
 
@@ -181,7 +210,10 @@ export default function Home() {
                 GDSC (Google Developer Student Clubs)
               </h3>
               <ul className="mt-2 list-disc list-inside text-sm text-zinc-700 dark:text-zinc-300 space-y-1">
-                <li>Earth.env 아이디어톤: 환경 인식 개선 퀴즈 서비스 기획 및 세미나 발표 (3인 팀)</li>
+                <li>
+                  Earth.env 아이디어톤: 환경 인식 개선 퀴즈 서비스 기획 및
+                  세미나 발표 (3인 팀)
+                </li>
                 <li>React.js 스터디 참여</li>
               </ul>
             </div>
@@ -190,7 +222,9 @@ export default function Home() {
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                 성균관대학교 · 소프트웨어학과 복수전공
               </h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400">20XX 졸업</p>
+              <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                20XX 졸업
+              </p>
             </div>
           </div>
         </section>
@@ -275,7 +309,8 @@ export default function Home() {
               AI 포트폴리오 챗봇
             </h3>
             <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400">
-              Spring AI 백엔드와 연결되어 있습니다. 포트폴리오 관련 질문을 자유롭게 입력하세요.
+              Spring AI 백엔드와 연결되어 있습니다. 포트폴리오 관련 질문을
+              자유롭게 입력하세요.
             </p>
 
             <div className="flex h-[300px] flex-col rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-700 dark:bg-zinc-950/60">
