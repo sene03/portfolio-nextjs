@@ -9,11 +9,8 @@ import {
   type ChatMessage,
 } from "../page.helpers";
 
-const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
-
 async function sendChatQuery(query: string): Promise<string> {
-  const res = await fetch(`${API_BASE_URL}/api/v1/rag/query`, {
+  const res = await fetch("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
