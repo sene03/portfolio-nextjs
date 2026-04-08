@@ -1,6 +1,7 @@
 import { experiences, profile, projects, skillGroups } from "./data/portfolio";
 import { NavBar } from "./components/NavBar";
 import { ProjectsSection } from "./components/ProjectsSection";
+import { ChatWidget } from "./components/ChatWidget";
 
 const maxSkillCount = Math.max(...skillGroups.map((group) => group.items.length));
 
@@ -117,6 +118,7 @@ export default function Home() {
 
         </div>
       </main>
+      <ChatWidget />
     </>
   );
 }
