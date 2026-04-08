@@ -13,7 +13,7 @@ const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 
 async function sendChatQuery(query: string): Promise<string> {
-  const res = await fetch(`${API_BASE_URL}/api/v1/chat/query`, {
+  const res = await fetch(`${API_BASE_URL}/api/v1/rag/query`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
@@ -79,11 +79,27 @@ export function ChatWidget() {
         className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-zinc-950 text-white shadow-[0_8px_30px_rgba(15,23,42,0.25)] transition hover:bg-zinc-800 active:scale-95"
       >
         {open ? (
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
             <path d="M15.854 4.146a.5.5 0 0 1 0 .708L10.707 10l5.147 5.146a.5.5 0 0 1-.708.708L10 10.707l-5.146 5.147a.5.5 0 0 1-.708-.708L9.293 10 4.146 4.854a.5.5 0 0 1 .708-.708L10 9.293l5.146-5.147a.5.5 0 0 1 .708 0z" />
           </svg>
         ) : (
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
         )}
@@ -95,7 +111,9 @@ export function ChatWidget() {
           {/* Header */}
           <div className="flex items-center gap-3 border-b border-zinc-100 px-5 py-4">
             <div className="h-2 w-2 rounded-full bg-zinc-900" />
-            <p className="text-sm font-semibold text-zinc-950">포트폴리오 Q&A</p>
+            <p className="text-sm font-semibold text-zinc-950">
+              포트폴리오 Q&A
+            </p>
             <p className="ml-auto text-xs text-zinc-400">AI 답변</p>
           </div>
 
@@ -145,13 +163,25 @@ export function ChatWidget() {
                 className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-zinc-950 text-white transition hover:bg-zinc-700 disabled:opacity-40"
                 aria-label="전송"
               >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
                   <line x1="22" y1="2" x2="11" y2="13" />
                   <polygon points="22 2 15 22 11 13 2 9 22 2" />
                 </svg>
               </button>
             </div>
-            <p className="mt-2 text-center text-[10px] text-zinc-300">Enter로 전송 · Shift+Enter 줄바꿈</p>
+            <p className="mt-2 text-center text-[10px] text-zinc-300">
+              Enter로 전송 · Shift+Enter 줄바꿈
+            </p>
           </div>
         </div>
       )}
